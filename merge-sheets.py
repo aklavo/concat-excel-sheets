@@ -1,24 +1,35 @@
 import os
 import pandas as pd
 
-folder_path = r'C:\Users\andrewkl\McKinstry\MTN Projects - 12 Trends\Scott Bio BAS Trends 4.13'
+folder_path = r'C:\Users\andrewkl\McKinstry\MTN Projects - 12 Trends'
+data_path = folder_path + r'\Scott Bio BAS Trends 4.13'
 
 # Get a list of all the .csv files in the folder
-csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
+csv_files = [f for f in os.listdir(data_path) if f.endswith('.csv')]
 
 # Read in each .csv file store it as a dataframe, then store it in a list
 dfs = []
-for file in csv_files:
-    if file == csv_files[0]:
-        df = pd.read_csv(os.path.join(folder_path, file), usecols=[0, 1])
-    else:
-        df = pd.read_csv(os.path.join(folder_path, file), usecols=[1])
+for i, file in enumerate(csv_files):
+    df = pd.read_csv(os.path.join(data_path, file), header=0, index_col=False, usecols=[0, 1], parse_dates=[0])
+    start_time = df['Time'].iloc[0]
+    end_time = df['Time'].iloc[-1]
+    dfs.append({'df': df, 'start_time': start_time, 'end_time': end_time})
 
-    dfs.append(df)
+# Determine the maximum start and end times
+start_times = [d['start_time'] for d in dfs]
+end_times = [d['end_time'] for d in dfs]
+max_start_time = max(start_times)
+max_end_time = max(end_times)
 
+# Create a DataFrame with a datetime range
+dt_range = pd.date_range(start=max_start_time, end=max_end_time, freq='5T')
+
+# Convert the datetime range to a DataFrame
+merged_df = pd.DataFrame({'Time': dt_range})
 
 # Merge all the dataframes into a single dataframe based on the Time column, NaN unavalible data
-merged_df = pd.concat(dfs, axis=1)
+for d in dfs:
+    merged_df = merged_df.merge(d["df"], how='left', on='Time')
 
 # Export the merged dataframe as a single .csv file
-merged_df.to_csv(os.path.join(folder_path, 'output.csv'), index=False)
+merged_df.to_csv(os.path.join(folder_path, 'Scoot-BIO-BAS-Combined.csv'), index=False)
