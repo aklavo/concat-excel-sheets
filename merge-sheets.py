@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import sys
 
+# Get path to data folder from user
 folder_path = str(input("Enter data folder path:"))
 
 # Get a list of all the .csv files in the folder
@@ -21,7 +22,7 @@ end_times = [d['end_time'] for d in dfs]
 max_start_time = max(start_times)
 max_end_time = max(end_times)
 
-# Create a DataFrame with a datetime range
+# Create a DataFrame with a datetime range using max/min times
 dt_range = pd.date_range(start=max_start_time, end=max_end_time, freq='5T')
 
 # Convert the datetime range to a DataFrame
