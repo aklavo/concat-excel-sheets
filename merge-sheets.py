@@ -1,16 +1,16 @@
 import os
 import pandas as pd
+import sys
 
-folder_path = r'C:\Users\andrewkl\McKinstry\MTN Projects - 12 Trends'
-data_path = folder_path + r'\Scott Bio BAS Trends 4.13'
+folder_path = str(input("Enter data folder path:"))
 
 # Get a list of all the .csv files in the folder
-csv_files = [f for f in os.listdir(data_path) if f.endswith('.csv')]
+csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
 
 # Read in each .csv file store it as a dataframe, then store it in a list
 dfs = []
 for i, file in enumerate(csv_files):
-    df = pd.read_csv(os.path.join(data_path, file), header=0, index_col=False, usecols=[0, 1], parse_dates=[0])
+    df = pd.read_csv(os.path.join(folder_path, file), header=0, index_col=False, usecols=[0, 1], parse_dates=[0])
     start_time = df['Time'].iloc[0]
     end_time = df['Time'].iloc[-1]
     dfs.append({'df': df, 'start_time': start_time, 'end_time': end_time})
