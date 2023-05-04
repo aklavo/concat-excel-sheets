@@ -1,2 +1,2 @@
 # Merge Excel Sheets
-A basic script to pull data from multiple excel sheets and merges them into one based on the common datetime column. 
+A basic script that pulls data from multiple csv's and merges them into one csv based on the common datetime column. 
