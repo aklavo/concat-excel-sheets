@@ -33,4 +33,4 @@ for d in dfs:
     merged_df = merged_df.merge(d["df"], how='left', on='Time')
 
 # Export the merged dataframe as a single .csv file
-merged_df.to_csv(os.path.join(folder_path, 'Scoot-BIO-BAS-Combined.csv'), index=False)
+merged_df.to_csv(os.path.join(folder_path, 'Scott-BIO-BAS-Combined.csv'), index=False)
