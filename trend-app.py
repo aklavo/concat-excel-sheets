@@ -22,7 +22,7 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
             html.Label('Enter full path to data file: ', style={'margin': 10}),
-            dcc.Input(id='full_path', type='text', placeholder='File Path...', style={'margin': 10,'width': '600px'})
+            dcc.Input(id='full_path', type='text', placeholder='File Path...', style={'margin': 10,'width': '650px'})
         ])
     ]),
     dbc.Row([
