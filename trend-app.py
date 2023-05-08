@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/c/Users/andrewkl/AppData/Local/Programs/Python/Python311/python
 import pandas as pd
 import dash
 import sys
