@@ -13,7 +13,7 @@ fig_empty.add_trace(go.Scatter(x=[0], y=[0], name='NO DATA'))
 fig_empty.add_annotation(x=0, y=0,text="ENTER FILE PATH",showarrow=False,yshift=10)
 
 # Graph component
-trend_plot = dcc.Graph(id="trend_plot", responsive=True, style={'height': '700px'})
+trend_plot = dcc.Graph(id="trend_plot", responsive=True, style={'height': '750px'})
 
 # App Layout
 app.layout = dbc.Container([
