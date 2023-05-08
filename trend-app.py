@@ -8,9 +8,8 @@ import plotly.graph_objects as go
 
 app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY])
 
-full_path = str(sys.argv[1])
+full_path = str(input("Full path to Combind csv: "))
 split_path = full_path.rsplit('\\', 1)
-print(split_path)
 # Pull data store as df
 folder_path = split_path[0]
 file_name = split_path[1]
